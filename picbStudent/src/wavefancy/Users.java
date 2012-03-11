@@ -2,35 +2,23 @@ package wavefancy;
 
 public class Users {
 	int id;
-	String fName;
-	String lName;
+	String username;
 	String email;
-	int iam;
-	String institution;
 	String psw;
-	String address;
-	String pcode;
-	String notes;
-	int pay;
-	int oadmin;
-	
+	String pgroupid;
+	String padmin;
+	String uimg;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getfName() {
-		return fName;
+	public String getUsername() {
+		return username;
 	}
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getEmail() {
 		return email;
@@ -38,53 +26,28 @@ public class Users {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getIam() {
-		return iam;
-	}
-	public void setIam(int iam) {
-		this.iam = iam;
-	}
-	public String getInstitution() {
-		return institution;
-	}
-	public void setInstitution(String institution) {
-		this.institution = institution;
-	}
 	public String getPsw() {
 		return psw;
 	}
 	public void setPsw(String psw) {
 		this.psw = psw;
 	}
-	public String getAddress() {
-		return address;
+	public String getPgroupid() {
+		return pgroupid;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPgroupid(String pgroupid) {
+		this.pgroupid = pgroupid;
 	}
-	public String getPcode() {
-		return pcode;
+	public String getPadmin() {
+		return padmin;
 	}
-	public void setPcode(String pcode) {
-		this.pcode = pcode;
+	public void setPadmin(String padmin) {
+		this.padmin = padmin;
 	}
-	public String getNotes() {
-		return notes;
+	public String getUimg() {
+		return uimg;
 	}
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setUimg(String uimg) {
+		this.uimg = uimg;
 	}
-	public int getPay() {
-		return pay;
-	}
-	public void setPay(int pay) {
-		this.pay = pay;
-	}
-	public int getOadmin() {
-		return oadmin;
-	}
-	public void setOadmin(int oadmin) {
-		this.oadmin = oadmin;
-	}
-	
 }

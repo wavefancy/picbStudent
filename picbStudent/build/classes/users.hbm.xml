@@ -4,22 +4,17 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="wavefancy">
-	<class name="Users" table="userinfo">
+	<class name="Users" table="pusers">
 		<id name="id" column="id">
 			<generator class="identity" />
 		</id>
 
-		<property name="fName" column="fName" />
-		<property name="lName" column="lName" />
+		<property name="username" column="username" />
 		<property name="email" column="email" />
-		<property name="iam" column="iam" />
-		<property name="institution" column="institution" />
 		<property name="psw" column="psw" />
-		<property name="address" column="address" />
-		<property name="pcode" column="pcode" />
-		<property name="notes" column="notes" />
-		<property name="pay" column="pay" />
-		<property name="oadmin" column="oadmin" />
+		<property name="pgroupid" column="pgroupid" />
+		<property name="padmin" column="padmin" />
+		<property name="uimg" column="uimg" />
 		
 		
 	</class>

@@ -47,7 +47,8 @@
 
 		<!-- 不支持通配符*，所以这里需要一个文件一个文件的配置，有点烦呢:( -->
 		<mapping resource="users.hbm.xml" />
-		
+		<mapping resource="articles.hbm.xml" />
+		<mapping resource="groups.hbm.xml" />
 		<!--
 		<mapping resource="dailyCashNote.hbm.xml" />
 		-->

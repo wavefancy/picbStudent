@@ -15,6 +15,11 @@ import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.logicalcobwebs.proxool.ProxoolFacade;
 
+/**
+ * This class is not intended for this project, just a template.
+ * @author icorner
+ *
+ */
 public class UsersDo extends HttpServlet {
 
 	private static final long serialVersionUID = 7336684815224754637L;
@@ -97,10 +102,7 @@ public class UsersDo extends HttpServlet {
 				s2.getTransaction().commit();
 				s2.close();
 				
-				user.setNotes(u.getNotes());
-				user.setPay(u.getPay());
-				user.setOadmin(u.getOadmin());
-				
+			
 				session.update(user);
 			}
 		session.getTransaction().commit();
