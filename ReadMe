@@ -1,8 +1,12 @@
 picb student union websites.
 ___________
 mark 
-test
 
 #minxian
 1. 我已经在数据库中建好表格，也做好hibernate的mapping，杨雄你可以直接使用map好的Users对象。明晨在做注册页的前端，你们俩商量下，把注册页做好。
 在把密码写入数据库之前，请对密码进行md5加密，以后登陆验证也是先对密码加密再验证，不建议在数据里面使用明文密码。在wavefancy 包中有md5加密的工具类。
+
+----------------------------------------------------
+#yangxiong(阳雄）
+2.密码确实应该加密存储，另外我建议那个同步的hibernate config 文件中的数据库用户名和密码最好隐去，毕竟在github上大家都能知道密码
+3.数据库中的表格我建议添加上相应的外键（foreign key)以维持consistency
