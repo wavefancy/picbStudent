@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="wavefancy">
+	<class name="Users" table="pusers">
+		<id name="id" column="id">
+			<generator class="identity" />
+		</id>
+
+		<property name="username" column="username" />
+		<property name="email" column="email" />
+		<property name="psw" column="psw" />
+		<property name="pgroupid" column="pgroupid" />
+		<property name="padmin" column="padmin" />
+		<property name="uimg" column="uimg" />
+		
+		
+	</class>
+</hibernate-mapping>
