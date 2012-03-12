@@ -9,12 +9,12 @@
 		<!--Database Driver-->
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<!-- JDBC URL, gapdp 为数据库名 -->
-		<property name="connection.url">jdbc:postgresql://db3.icb.ac.cn/owiss</property>
+		<property name="connection.url">jdbc:postgresql://db3.icb.ac.cn/</property>
 	
 		<!-- 数据库用户名 -->
-		<property name="connection.username">owiss</property>
+		<property name="connection.username"></property>
 		<!-- 数据库密码 -->
-		<property name="connection.password">owissrs</property>
+		<property name="connection.password"></property>
 		
 		<property name="connection.pool_size">5</property>
 
