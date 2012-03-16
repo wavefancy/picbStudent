@@ -24,3 +24,18 @@ mark
 另外把小明同學也添加進來吧
 謝謝！
 
+---------------------------------------------------
+#minxian
+xiong 我已经把你加到了 collaborators。谢谢你的建议，小明同學请把你的 github 帐号告诉我。
+
+Functions: 我已经做好了 图片上传和剪裁插件。剪裁后的文件名放在 HttpSession 中，可以通过 httpSession.getAttribute("tempImg") 获取文件名。图片文件放在 usrImg 中。
+整过逻辑请参考 groupAdmin.shtml， 点击图片可以替换图片。这个功能在你们做用户注册页面可能需要用到。
+
+Functions: 我接下来正在做 groups 管理的页面。
+
+P.S 由于 jQuery Mobile 的ajax 页面加载的原因，自定义的 binding events 可能不起作用，简单的处理的方法是在 a 标签中增加 rel = "external" 属性, 禁止 jQuery Mobile, 默认的ajax 加载。
+
+
+ 
+
+
