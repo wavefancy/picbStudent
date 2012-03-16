@@ -10,88 +10,18 @@
 		
 	<script src="javascript/jquery-1.6.1.min.js"></script>
 	<script src="jqueryMobile/jquery.mobile-1.0b1.min.js"></script>
-
-	<!--fancyBox-->
-	<script src="javascript/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-	<link rel="stylesheet" href="javascript/fancybox/jquery.fancybox-1.3.4.css" />
-	<!--end fancyBox-->
-	
-	<!--blockUI-->
-	<script src="javascript/jqueryBlockUI/jquery.blockUI.js"></script>
-	<script src="javascript/userFunctions.wavefancy.js"></script>
-	<!--end BlockUI-->
-
+	<!--
+		<script src="experiments/themeswitcher/jquery.mobile.themeswitcher.js"></script>
+	-->
 	<script language="JavaScript">
-		var current = "0"; //store current image ID.
-
+//		alert("ok");
 		$(document).ready(function(){
 //			alert("ok1");
-//			alert($("img[id]").length);
-			$("img[id]").click(function(e){
-//				alert(this.attr("src"));
-				
-//				alert($(this).attr("id"));
-				current = $(this).attr("id");
-				$("#a" + $(this).attr("id")).attr("href","imgUpLoadAndCrop.shtml");
-				
-				bindFancyBox(current);
-				
-				$("#a" + $(this).attr("id")).click();
-				
+			alert( $("#mmm").attr("src"));
+			$("#ccc").click(function(){
+				alert("yes");
 			});
-			
-//			$("a[id]").fancybox({
-//				'width'				: '95%',
-//				'height'			: '95%',
-//				'autoScale'			: false,
-//				'transitionIn'		: 'none',
-//				'transitionOut'		: 'none',
-//				'type'				: 'iframe',
-//				'cyclic'			: false,
-//				'showNavArrows'		: false,
-//				'showCloseButton'	: false,
-//				'onClosed'			: reloadImg(current)
-//			});
-			
-			
-			
 		});
-		
-		function bindFancyBox(ID){
-			$("#a"+ID).fancybox({
-				'width'				: '95%',
-				'height'			: '95%',
-				'autoScale'			: false,
-				'transitionIn'		: 'none',
-				'transitionOut'		: 'none',
-				'type'				: 'iframe',
-				'cyclic'			: false,
-				'showNavArrows'		: false,
-				'showCloseButton'	: false,
-				'onClosed'			: reloadImg
-			});
-		};
-		
-		//reload image when crop finished.
-		function reloadImg(){
-//				alert(current);
-//				alert("here..");
-				//reset current img
-				blockUI("Fetching image, please wait...");
-				$.post("imgProcess.do",{
-					action: "getCurrentImg"
-				},function(data){
-					
-					if(data.message != "ok"){
-						blockUI("Internal Error, please contact administrator!");
-					}else{
-						unBlockUI(20);
-//						alert("userImg/"+data.file);
-						$("#"+current).attr("src","userImg/"+data.file);
-					}
-
-				},"json");
-		}
 	</script>
 
 </head> 
@@ -113,23 +43,20 @@
 		<div class="content-primary">
 		
 			<h2>组管理 | Groups Administration Panel</h2>
+			<img id="ccc" alt="group image" src="userImg/change.jpg" width="70px">
 			
-			
-			<div  style="font-size:10px; vertical-align:top; min-width:600px;">
+			<div  style="font-size:10px;">
 				<p class="articleMeta"></p>
-				<div style="display:inline-block; margin-right:10px; width:70px;height:70px; overflow:hidden; line-height:70px;">
-					<img id="m0" alt="group image" src="userImg/change.jpg" height="70px">
-					<div style="display:none;">
-						<a id="am0" href="#" rel="external"></a>
-					</div>
+				<div style="display:inline-block; margin-right:10px; width:70px;height:70px; overflow:hidden;">
+					<img id="mmm" alt="group image" src="userImg/change.jpg" width="70px">
 				</div>
 				<div style="display:inline-block;">
 					<div style="width:49%; display:inline-block;">
-						<label for="cn"  style="font-size:14px;">中文名:</label>
+						<label for="basic"  style="font-size:14px;">中文名</label>
 						<input type="text" name="name" id="cn" value=""  style="font-size:14px;"/>
 					</div>
 					<div style="width:49%; display:inline-block;">
-						<label for="en" style="font-size:14px;">English Name</label>
+						<label for="basic" style="font-size:14px;">English Name</label>
 						<input type="text" name="name" id="en" value="" style="font-size:14px;"/>
 					</div>
 					
@@ -140,22 +67,19 @@
 		
 			</div>
 			
-		
-			<div  style="font-size:10px; min-width:600px;">
+			<!--
+			<div  style="font-size:10px;">
 				<p class="articleMeta"></p>
 				<div style="display:inline-block; margin-right:10px; width:70px;height:70px; overflow:hidden;">
-					<img id="m1" alt="group image" src="userImg/change.jpg" width="70px">
-					<div style="display:none;">
-						<a id="am1" href="#" rel="external"></a>
-					</div>
+					<img alt="group image" src="userImg/change.jpg" width="70px">
 				</div>
 				<div style="display:inline-block;">
 					<div style="width:49%; display:inline-block;">
-						<label for="cn1"  style="font-size:14px;">中文名:</label>
+						<label for="basic"  style="font-size:14px;">中文名</label>
 						<input type="text" name="name" id="cn1" value=""  style="font-size:14px;"/>
 					</div>
 					<div style="width:49%; display:inline-block;">
-						<label for="en1" style="font-size:14px;">English Name:</label>
+						<label for="basic" style="font-size:14px;">English Name</label>
 						<input type="text" name="name" id="en1" value="" style="font-size:14px;"/>
 					</div>
 					
@@ -165,7 +89,7 @@
 					</div>
 				</div>
 			</div>
-		
+			-->
 			
 			<!--
 			<div  style="font-size:10px;">

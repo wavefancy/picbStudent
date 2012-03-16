@@ -1,0 +1,227 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Image Upload</title> 
+	<link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.0b1.css" />
+	<link rel="stylesheet" href="jqueryMobile/_assets/css/jqm-docs.css"/>
+	<script src="jqueryMobile/_assets/js/jqm-docs.js"></script>
+		
+	<script src="javascript/jquery-1.6.1.min.js"></script>
+	<script src="jqueryMobile/jquery.mobile-1.0b1.min.js"></script>
+
+	<!--for file upload-->
+	<script src="javascript/fileUploadClient/fileuploader.js"></script>
+	<link rel="stylesheet" href="javascript/fileUploadClient/fileuploader.css" />
+	<!--end for file upload-->
+	
+	<!--Jcrop-->
+	<script src="javascript/Jcrop/js/jquery.Jcrop.min.js"></script>
+	<link rel="stylesheet" href="javascript/Jcrop/css/jquery.Jcrop.css" />
+	<!--end Jcrop-->
+	
+	<!--blockUI-->
+	<script src="javascript/jqueryBlockUI/jquery.blockUI.js"></script>
+	<script src="javascript/userFunctions.wavefancy.js"></script>
+	<!--end BlockUI-->
+	
+		<script language="JavaScript">
+			// Create variables (in this scope) to hold the API and image size of Jcrop.
+			var jcrop_api, boundx, boundy, x1, x2, y1,y2,w,h;
+			x1 = -1;
+			 
+			$(document).ready(function(){
+				
+				$("#save").click(function(){
+//					blockUI("test");
+					
+					if(x1 == -1){
+						blockUINoOverlay("Please upload an image, and set a region!");
+						return;
+					}else{
+						
+						$.post("imgProcess.do",{
+							action: "cropImg",
+							x1: x1,
+							x2: x2,
+							y1: y1,
+							y2: y2
+						},function(data){
+//							alert(data.message);
+							if(data.message != "ok"){
+								blockUINoOverlay("Interanl error,Please set your image again!");
+								unBlockUI(4000);
+							}else{
+								blockUINoOverlay("Your image has been saved!");
+								unBlockUI(4000);
+//								alert(data.file);
+								//all done! close this window.
+								parent.$.fancybox.close();
+							}
+						},"json");
+					}
+					
+				});
+				
+				//reset image.
+				$("#reset").click(function(){
+					blockUINoOverlay("Processing, please wait!");
+					$.post("imgProcess.do",{
+						action: "reset"
+					},function(data){
+						unBlockUI(10);
+						window.location.href = "imgUpLoadAndCrop.shtml";
+					},"json");
+				});
+
+
+		});
+		
+		function fireJcrop(){
+			 $('#target').Jcrop({
+		        onChange: updatePreview,
+		        onSelect: updatePreview,
+		        aspectRatio: 1
+		      },function(){
+		        // Use the API to get the real image size
+		        var bounds = this.getBounds();
+		        boundx = bounds[0];
+		        boundy = bounds[1];
+				
+		        // Store the API in the jcrop_api variable
+		        jcrop_api = this;
+		      });
+		}
+		
+		function updatePreview(c){
+			if (parseInt(c.w) > 0) {
+				var rx = 100 / c.w;
+				var ry = 100 / c.h;
+				
+				$('#preview').css({
+					width: Math.round(rx * boundx) + 'px',
+					height: Math.round(ry * boundy) + 'px',
+					marginLeft: '-' + Math.round(rx * c.x) + 'px',
+					marginTop: '-' + Math.round(ry * c.y) + 'px',
+				});
+				
+				//store coordinates.
+				x1 = c.x;
+				x2 = c.x2;
+				y1 = c.y;
+				y2 = c.y2;
+				w = c.w;
+				h = c.h;
+			}
+		}
+		
+		
+		//------------------ for file upload ----------------
+		function createUploader(){            
+            var uploader = new qq.FileUploader({
+                element: document.getElementById('file-uploader-demo1'),
+                action: 'imgUpload.do',
+                debug: false,
+				allowedExtensions:['jpg','jpeg','png','gif'],
+				sizeLimit: 5000000,
+				minSizeLimit: 1000,
+				onComplete: function(id, fileName, responseJSON){
+
+//					alert(responseJSON.tempImg);
+					
+					$("#target").attr("src","userImg/"+responseJSON.tempImg);
+					$("#preview").attr("src","userImg/"+responseJSON.tempImg);
+					
+					$("#stepTwo").css({
+						display:'block'
+					});
+					//fire jcrop
+					fireJcrop();
+					
+				}
+            });           
+        }
+        
+        // in your app create uploader as soon as the DOM is ready
+        // don't wait for the window to load  
+        window.onload = createUploader;     
+		//--------------------end for file upload----------------------		
+		</script>
+</head> 
+<body> 
+
+<div data-role="page" class="type-interior">
+
+	<div data-role="header" data-theme="f">
+		<h1>图片上传 | Image upload</h1>
+		
+		
+		<a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
+	</div>
+	
+	<!-- /header -->
+
+<!--
+		<form action="fileUpload.do" method="post" enctype="multipart/form-data" id="form1">
+			
+			<h3 style="border-left:20px solid #74B64A; background:#e6e6e6; padding:10px;">Upload Image</h3>
+			<div>
+				
+				<input type="file" id="upFile">
+				
+			</div>
+			<input value="uploadSigleImg" id="action" name="action" type="hidden">
+			
+			<input id="up" type="submit" data-inline="true" data-theme="b" value="上传 | Upload" data-mini="true" style="font-size:12px !important; margin:20px;">		
+		
+		</form>
+-->		
+	<h3 style="border-left:20px solid #74B64A; background:#e6e6e6; padding:10px;">Upload Image</h3>	
+		
+		<div id="file-uploader-demo1" style="margin-left:20px;">		
+			<noscript>			
+				<p>Please enable JavaScript to use file uploader.</p>
+				<!-- or put a simple form for upload here -->
+			</noscript>         
+	    </div>
+		
+		
+		
+		<h3 style="border-left:20px solid #FFCC33; background:#e6e6e6; padding:10px;">Image preview and crop</h3>
+		
+		
+		<table id="stepTwo" style="display:none;">
+			<tr>
+				<td>
+					<div style="display:inline;">
+						<img src="" id="target" alt="previewImg" width="400px" />
+					</div>
+				</td>
+				<td>
+					<div style="display:inline-block;height:100px;width:100px; overflow:hidden;">
+						<img src="" alt="preview" id="preview" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+		<p class="articleMeta" style="margin-bottom:0px;"></p>
+		<a id="save" href="#" data-role="button" data-theme="e"  data-mini="true" data-icon="check" data-inline="true">Confirm And Save</a>
+		<a id="reset" href="#" data-role="button" data-theme="c"  data-mini="true" data-icon="delete" data-inline="true">Reset Image</a>
+		
+	<div data-role="content">
+
+	</div><!-- /content -->
+	
+	<div data-role="footer" class="footer-docs" data-theme="c">
+
+		
+
+	</div>	
+	
+	
+</div><!-- /page -->
+
+</body>
+</html>

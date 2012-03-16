@@ -37,7 +37,9 @@ public class CheckValidationFilter implements Filter {
 //		System.out.println(contextPath);
 		
 		String uri = requestURI.substring(contextPath.length()+1);
-//		System.out.println(uri);
+		System.out.println(uri);
+		
+	
 		
 		Set<String> permitActions = new HashSet<String>();
 		permitActions.add("checkEmail");
@@ -45,7 +47,8 @@ public class CheckValidationFilter implements Filter {
 		permitActions.add("login");
 		permitActions.add("logout");
 		
-		if (permitActions.contains(req.getParameter("action"))) { //the request from login page
+		//test
+		if (!permitActions.contains(req.getParameter("action"))) { //the request from login page
 			chain.doFilter(req, resp); 
 			return;
 		}else if (uri.endsWith("logout.do")) {
