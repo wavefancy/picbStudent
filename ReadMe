@@ -1,7 +1,5 @@
 picb student union websites.
-___________
-mark 
-
+----------------------------------------------------
 #minxian
 1. 我已经在数据库中建好表格，也做好hibernate的mapping，杨雄你可以直接使用map好的Users对象。明晨在做注册页的前端，你们俩商量下，把注册页做好。
 在把密码写入数据库之前，请对密码进行md5加密，以后登陆验证也是先对密码加密再验证，不建议在数据里面使用明文密码。在wavefancy 包中有md5加密的工具类。
@@ -34,8 +32,23 @@ Functions: 我已经做好了 图片上传和剪裁插件。剪裁后的文件�
 Functions: 我接下来正在做 groups 管理的页面。
 
 P.S 由于 jQuery Mobile 的ajax 页面加载的原因，自定义的 binding events 可能不起作用，简单的处理的方法是在 a 标签中增加 rel = "external" 属性, 禁止 jQuery Mobile, 默认的ajax 加载。
+------------------------------------------------------
+#yangxiong
+1.乱码的解决方法：修改tomcat配置的conf/web.xml中的
+<servlet>
+   <servlet-name>ssi</servlet-name> 
+   ................
+   <load-on-startup>4</load-on-startup>  
+</servlet>
+在<load-on-startup>的前面添加上如下初始化字符编码参数：
+<init-param>
+  <param-name>inputEncoding</param-name>
+  <param-value>utf-8</param-value>
+  <param-name>outputEncoding</param-name>
+  <param-value>utf-8</param-value>
+</init-param>
+保存，重启，问题搞定.
 
-
- 
+2.学长我没有权限删除文件，你帮我把没用的nbprojet文件夹删除吧，还有就是文件build.xml. 谢谢！
 
 
