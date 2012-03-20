@@ -49,6 +49,6 @@ P.S 由于 jQuery Mobile 的ajax 页面加载的原因，自定义的 binding ev
 </init-param>
 保存，重启，问题搞定.
 
-2.学长我没有权限删除文件，你帮我把没用的nbprojet文件夹删除吧，还有就是文件build.xml. 谢谢！
+2.学长我没有权限删除文件，你帮我把没用的nbprojet和Test文件夹删除吧，还有就是文件build.xml. 谢谢！
 
 
